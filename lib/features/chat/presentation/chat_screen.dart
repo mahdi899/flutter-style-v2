@@ -2,8 +2,24 @@ import 'package:flutter/material.dart';
 
 import '../../../app/theme/app_theme.dart';
 
-class ChatScreen extends StatelessWidget {
-  const ChatScreen({super.key});
+class ChatScreen extends StatefulWidget {
+  const ChatScreen({super.key, this.prefill});
+
+  final String? prefill;
+
+  @override
+  State<ChatScreen> createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends State<ChatScreen> {
+  late final TextEditingController _controller =
+      TextEditingController(text: widget.prefill ?? '');
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +71,7 @@ class ChatScreen extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             TextField(
+              controller: _controller,
               decoration: InputDecoration(
                 hintText: 'پیام خود را بنویسید...',
                 suffixIcon: IconButton(
