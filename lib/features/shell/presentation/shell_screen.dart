@@ -76,7 +76,10 @@ class ShellScreen extends StatelessWidget {
     final colorScheme = theme.colorScheme;
 
     return Scaffold(
-      body: SafeArea(child: child),
+      body: SafeArea(
+        top: false,
+        child: SizedBox.expand(child: child),
+      ),
       bottomNavigationBar: SafeArea(
         top: false,
         child: Padding(
