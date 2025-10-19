@@ -8,11 +8,13 @@ class ShellDestination {
     required this.path,
     required this.icon,
     required this.label,
+    this.isCenter = false,
   });
 
   final String path;
   final IconData icon;
   final String label;
+  final bool isCenter;
 }
 
 class ShellScreen extends StatelessWidget {
@@ -30,22 +32,18 @@ class ShellScreen extends StatelessWidget {
     ShellDestination(
       path: AppRoutePath.explore,
       icon: Icons.explore_rounded,
-      label: 'کاوش',
+      label: 'الهام',
+    ),
+    ShellDestination(
+      path: AppRoutePath.chat,
+      icon: Icons.chat_bubble_rounded,
+      label: 'چت',
+      isCenter: true,
     ),
     ShellDestination(
       path: AppRoutePath.closet,
       icon: Icons.checkroom_rounded,
       label: 'کمد',
-    ),
-    ShellDestination(
-      path: AppRoutePath.chat,
-      icon: Icons.chat_rounded,
-      label: 'گفتگو',
-    ),
-    ShellDestination(
-      path: AppRoutePath.tryOn,
-      icon: Icons.camera_alt_rounded,
-      label: 'پرو مجازی',
     ),
     ShellDestination(
       path: AppRoutePath.profile,
@@ -55,18 +53,14 @@ class ShellScreen extends StatelessWidget {
   ];
 
   int get _currentIndex {
-    if (location == AppRoutePath.home) {
-      return 0;
-    }
-
-    for (int i = 1; i < _destinations.length; i++) {
-      final destination = _destinations[i];
-      if (location.startsWith(destination.path)) {
-        return i;
+    final index = _destinations.indexWhere((destination) {
+      if (destination.path == AppRoutePath.home) {
+        return location == destination.path;
       }
-    }
+      return location.startsWith(destination.path);
+    });
 
-    return 0;
+    return index < 0 ? 0 : index;
   }
 
   void _onDestinationSelected(BuildContext context, int index) {
@@ -78,19 +72,135 @@ class ShellScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Scaffold(
-      body: child,
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) => _onDestinationSelected(context, index),
-        items: _destinations
-            .map(
-              (destination) => BottomNavigationBarItem(
-                icon: Icon(destination.icon),
-                label: destination.label,
+      body: SafeArea(child: child),
+      bottomNavigationBar: SafeArea(
+        top: false,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+            decoration: BoxDecoration(
+              color: colorScheme.surface,
+              borderRadius: BorderRadius.circular(32),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.06),
+                  blurRadius: 24,
+                  offset: const Offset(0, 12),
+                ),
+              ],
+            ),
+            child: Row(
+              children: List.generate(_destinations.length, (index) {
+                final destination = _destinations[index];
+                final isActive = index == _currentIndex;
+
+                return Expanded(
+                  child: _NavigationItem(
+                    destination: destination,
+                    isActive: isActive,
+                    onTap: () => _onDestinationSelected(context, index),
+                  ),
+                );
+              }),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _NavigationItem extends StatelessWidget {
+  const _NavigationItem({
+    required this.destination,
+    required this.isActive,
+    required this.onTap,
+  });
+
+  final ShellDestination destination;
+  final bool isActive;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    if (destination.isCenter) {
+      final gradient = LinearGradient(
+        colors: [
+          colorScheme.primary,
+          colorScheme.secondary,
+        ],
+      );
+
+      return Center(
+        child: Material(
+          color: Colors.transparent,
+          shape: const CircleBorder(),
+          child: InkWell(
+            onTap: onTap,
+            customBorder: const CircleBorder(),
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: isActive ? gradient : null,
+                color: isActive
+                    ? null
+                    : colorScheme.surfaceVariant.withOpacity(0.9),
               ),
-            )
-            .toList(),
+              child: Icon(
+                destination.icon,
+                color: isActive
+                    ? colorScheme.onPrimary
+                    : colorScheme.onSurfaceVariant,
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
+    final textStyle = theme.textTheme.labelSmall;
+    final activeColor = colorScheme.primary;
+    final inactiveColor = colorScheme.onSurfaceVariant;
+
+    return Material(
+      color: Colors.transparent,
+      borderRadius: BorderRadius.circular(24),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(24),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                destination.icon,
+                color: isActive ? activeColor : inactiveColor,
+              ),
+              const SizedBox(height: 4),
+              Text(
+                destination.label,
+                style: textStyle?.copyWith(
+                  color: isActive ? activeColor : inactiveColor,
+                  fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
