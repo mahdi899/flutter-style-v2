@@ -6,9 +6,10 @@ class ExploreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return BottomNavShell(
       child: Center(
-        child: Text('Explore', style: const TextStyle(fontSize: 22)),
+        child: Text('Explore', style: textTheme.headline1),
       ),
     );
   }

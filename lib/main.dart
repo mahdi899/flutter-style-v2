@@ -17,6 +17,10 @@ class AStyleApp extends StatelessWidget {
       theme: buildLightTheme(),
       darkTheme: buildDarkTheme(),
       themeMode: ThemeMode.system,
+      builder: (context, child) => Directionality(
+        textDirection: TextDirection.rtl,
+        child: child ?? const SizedBox.shrink(),
+      ),
       initialRoute: AppRouter.home,
       routes: AppRouter.routes,
     );

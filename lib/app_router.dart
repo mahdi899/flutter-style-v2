@@ -9,7 +9,7 @@ import 'screens/account_screen.dart';
 import 'screens/saved_screen.dart';
 import 'screens/inspiration_screen.dart';
 import 'screens/face_screen.dart';
-import 'screens/try_on_screen.dart';
+import 'screens/tryon_screen.dart';
 
 class AppRouter {
   static const String home = '/';

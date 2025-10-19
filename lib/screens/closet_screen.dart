@@ -6,9 +6,10 @@ class ClosetScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return BottomNavShell(
       child: Center(
-        child: Text('Closet', style: const TextStyle(fontSize: 22)),
+        child: Text('Closet', style: textTheme.headline1),
       ),
     );
   }
