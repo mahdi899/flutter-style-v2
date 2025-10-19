@@ -55,6 +55,7 @@ final GoRouter appRouter = GoRouter(
       ),
       routes: [
         GoRoute(
+          parentNavigatorKey: _shellNavigatorKey,
           path: AppRoutePath.home,
           name: AppRouteName.home,
           pageBuilder: (context, state) => NoTransitionPage(
@@ -63,6 +64,7 @@ final GoRouter appRouter = GoRouter(
           ),
         ),
         GoRoute(
+          parentNavigatorKey: _shellNavigatorKey,
           path: AppRoutePath.explore,
           name: AppRouteName.explore,
           pageBuilder: (context, state) => NoTransitionPage(
@@ -71,6 +73,7 @@ final GoRouter appRouter = GoRouter(
           ),
         ),
         GoRoute(
+          parentNavigatorKey: _shellNavigatorKey,
           path: AppRoutePath.closet,
           name: AppRouteName.closet,
           pageBuilder: (context, state) => NoTransitionPage(
@@ -79,6 +82,7 @@ final GoRouter appRouter = GoRouter(
           ),
         ),
         GoRoute(
+          parentNavigatorKey: _shellNavigatorKey,
           path: AppRoutePath.chat,
           name: AppRouteName.chat,
           pageBuilder: (context, state) {
@@ -98,6 +102,7 @@ final GoRouter appRouter = GoRouter(
           },
         ),
         GoRoute(
+          parentNavigatorKey: _shellNavigatorKey,
           path: AppRoutePath.tryOn,
           name: AppRouteName.tryOn,
           pageBuilder: (context, state) => NoTransitionPage(
@@ -106,6 +111,7 @@ final GoRouter appRouter = GoRouter(
           ),
         ),
         GoRoute(
+          parentNavigatorKey: _shellNavigatorKey,
           path: AppRoutePath.profile,
           name: AppRouteName.profile,
           pageBuilder: (context, state) => NoTransitionPage(
@@ -114,6 +120,7 @@ final GoRouter appRouter = GoRouter(
           ),
         ),
         GoRoute(
+          parentNavigatorKey: _shellNavigatorKey,
           path: AppRoutePath.faceInspiration,
           name: AppRouteName.faceInspiration,
           pageBuilder: (context, state) => NoTransitionPage(
