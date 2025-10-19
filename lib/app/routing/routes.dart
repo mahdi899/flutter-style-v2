@@ -41,33 +41,41 @@ class AppRouteName {
 final GoRouter appRouter = GoRouter(
   navigatorKey: _rootNavigatorKey,
   initialLocation: AppRoutePath.home,
+  errorBuilder: (context, state) => ShellScreen(
+    location: AppRoutePath.home,
+    child: const HomeScreen(),
+  ),
   routes: [
     ShellRoute(
       navigatorKey: _shellNavigatorKey,
       builder: (context, state, child) => ShellScreen(
-        location: state.uri.toString(),
+        location:
+            state.matchedLocation.isEmpty ? AppRoutePath.home : state.matchedLocation,
         child: child,
       ),
       routes: [
         GoRoute(
           path: AppRoutePath.home,
           name: AppRouteName.home,
-          pageBuilder: (context, state) => const NoTransitionPage(
-            child: HomeScreen(),
+          pageBuilder: (context, state) => NoTransitionPage(
+            key: state.pageKey,
+            child: const HomeScreen(),
           ),
         ),
         GoRoute(
           path: AppRoutePath.explore,
           name: AppRouteName.explore,
-          pageBuilder: (context, state) => const NoTransitionPage(
-            child: ExploreScreen(),
+          pageBuilder: (context, state) => NoTransitionPage(
+            key: state.pageKey,
+            child: const ExploreScreen(),
           ),
         ),
         GoRoute(
           path: AppRoutePath.closet,
           name: AppRouteName.closet,
-          pageBuilder: (context, state) => const NoTransitionPage(
-            child: ClosetScreen(),
+          pageBuilder: (context, state) => NoTransitionPage(
+            key: state.pageKey,
+            child: const ClosetScreen(),
           ),
         ),
         GoRoute(
@@ -84,6 +92,7 @@ final GoRouter appRouter = GoRouter(
             }
 
             return NoTransitionPage(
+              key: state.pageKey,
               child: ChatScreen(prefill: prefill),
             );
           },
@@ -91,22 +100,25 @@ final GoRouter appRouter = GoRouter(
         GoRoute(
           path: AppRoutePath.tryOn,
           name: AppRouteName.tryOn,
-          pageBuilder: (context, state) => const NoTransitionPage(
-            child: TryOnScreen(),
+          pageBuilder: (context, state) => NoTransitionPage(
+            key: state.pageKey,
+            child: const TryOnScreen(),
           ),
         ),
         GoRoute(
           path: AppRoutePath.profile,
           name: AppRouteName.profile,
-          pageBuilder: (context, state) => const NoTransitionPage(
-            child: ProfileScreen(),
+          pageBuilder: (context, state) => NoTransitionPage(
+            key: state.pageKey,
+            child: const ProfileScreen(),
           ),
         ),
         GoRoute(
           path: AppRoutePath.faceInspiration,
           name: AppRouteName.faceInspiration,
-          pageBuilder: (context, state) => const NoTransitionPage(
-            child: FaceInspirationScreen(),
+          pageBuilder: (context, state) => NoTransitionPage(
+            key: state.pageKey,
+            child: const FaceInspirationScreen(),
           ),
         ),
       ],
