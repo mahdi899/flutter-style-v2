@@ -254,7 +254,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         Expanded(
                           child: Text(
                             'الهام بگیر',
-                            style: theme.headlineSmall?.copyWith(
+                            style: theme.textTheme.headlineSmall?.copyWith(
                               color: AppColors.secondary,
                               fontWeight: FontWeight.w700,
                             ),
@@ -284,7 +284,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     const SizedBox(height: 20),
                     Text(
                       'پیشنهادهای منتخب',
-                      style: theme.titleLarge,
+                      style: theme.textTheme.titleLarge,
                     ),
                   ],
                 ),
@@ -304,12 +304,12 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       const SizedBox(height: 12),
                       Text(
                         'موردی با این فیلترها پیدا نشد',
-                        style: theme.titleMedium,
+                        style: theme.textTheme.titleMedium,
                       ),
                       const SizedBox(height: 8),
                       Text(
                         'فیلترها را تغییر دهید تا پیشنهادهای بیشتری ببینید.',
-                        style: theme.bodyMedium?.copyWith(
+                        style: theme.textTheme.bodyMedium?.copyWith(
                           color: colorScheme.onSurface.withOpacity(0.6),
                         ),
                         textAlign: TextAlign.center,
@@ -364,7 +364,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     shape: const RoundedRectangleBorder(
                       borderRadius: AppRadii.border24,
                     ),
-                    textStyle: theme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+                    textStyle:
+                        theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
                   ),
                   child: const Text('اعمال فیلترها'),
                 ),
