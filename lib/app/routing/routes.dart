@@ -6,6 +6,7 @@ import '../../features/closet/presentation/closet_screen.dart';
 import '../../features/explore/presentation/explore_screen.dart';
 import '../../features/filters/presentation/filters_screen.dart';
 import '../../features/home/presentation/home_screen.dart';
+import '../../features/home/presentation/face_inspiration_screen.dart';
 import '../../features/profile/presentation/profile_screen.dart';
 import '../../features/shell/presentation/shell_screen.dart';
 import '../../features/tryon/presentation/tryon_screen.dart';
@@ -23,6 +24,7 @@ class AppRoutePath {
   static const String tryOn = '/try-on';
   static const String profile = '/profile';
   static const String filters = '/filters';
+  static const String faceInspiration = '/face-inspiration';
 }
 
 class AppRouteName {
@@ -33,6 +35,7 @@ class AppRouteName {
   static const String tryOn = 'try_on';
   static const String profile = 'profile';
   static const String filters = 'filters';
+  static const String faceInspiration = 'face_inspiration';
 }
 
 final GoRouter appRouter = GoRouter(
@@ -70,9 +73,20 @@ final GoRouter appRouter = GoRouter(
         GoRoute(
           path: AppRoutePath.chat,
           name: AppRouteName.chat,
-          pageBuilder: (context, state) => const NoTransitionPage(
-            child: ChatScreen(),
-          ),
+          pageBuilder: (context, state) {
+            String? prefill;
+            final Object? extra = state.extra;
+            if (extra is Map<String, dynamic>) {
+              final Object? maybePrefill = extra['prefill'];
+              if (maybePrefill is String) {
+                prefill = maybePrefill;
+              }
+            }
+
+            return NoTransitionPage(
+              child: ChatScreen(prefill: prefill),
+            );
+          },
         ),
         GoRoute(
           path: AppRoutePath.tryOn,
@@ -86,6 +100,13 @@ final GoRouter appRouter = GoRouter(
           name: AppRouteName.profile,
           pageBuilder: (context, state) => const NoTransitionPage(
             child: ProfileScreen(),
+          ),
+        ),
+        GoRoute(
+          path: AppRoutePath.faceInspiration,
+          name: AppRouteName.faceInspiration,
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: FaceInspirationScreen(),
           ),
         ),
       ],
