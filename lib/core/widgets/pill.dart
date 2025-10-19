@@ -26,12 +26,12 @@ class Pill extends StatelessWidget {
     final BorderRadius radius = AppRadii.border24;
 
     final Color background = selected
-        ? AppColors.accent.withOpacity(0.12)
-        : colorScheme.surface.withOpacity(0.72);
+        ? AppColors.accent.withValues(alpha: 0.12)
+        : colorScheme.surface.withValues(alpha: 0.72);
 
     final Color foreground = selected
         ? AppColors.accent
-        : colorScheme.onSurface.withOpacity(0.8);
+        : colorScheme.onSurface.withValues(alpha: 0.8);
 
     return Material(
       color: Colors.transparent,
@@ -46,8 +46,8 @@ class Pill extends StatelessWidget {
             borderRadius: radius,
             border: Border.all(
               color: selected
-                  ? AppColors.accent.withOpacity(0.3)
-                  : colorScheme.outline.withOpacity(0.12),
+                  ? AppColors.accent.withValues(alpha: 0.3)
+                  : colorScheme.outline.withValues(alpha: 0.12),
             ),
           ),
           child: Row(

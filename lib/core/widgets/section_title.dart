@@ -31,11 +31,11 @@ class SectionTitle extends StatelessWidget {
                 Text(
                   title,
                   style: textTheme.titleLarge?.copyWith(
-                        color: colorScheme.onBackground,
+                        color: colorScheme.onSurface,
                         fontWeight: FontWeight.w700,
                       ) ??
                       TextStyle(
-                        color: colorScheme.onBackground,
+                        color: colorScheme.onSurface,
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
                       ),
@@ -45,7 +45,7 @@ class SectionTitle extends StatelessWidget {
                   Text(
                     subtitle!,
                     style: textTheme.bodyMedium?.copyWith(
-                      color: colorScheme.onBackground.withOpacity(0.7),
+                      color: colorScheme.onSurface.withValues(alpha: 0.7),
                     ),
                   ),
                 ],

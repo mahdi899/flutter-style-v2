@@ -26,15 +26,15 @@ class GaugeCircle extends StatelessWidget {
   Widget build(BuildContext context) {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     final Color resolvedColor = color ?? AppColors.primary;
-    final Color resolvedBackground =
-        backgroundColor ?? colorScheme.surfaceVariant.withOpacity(0.2);
+    final Color resolvedBackground = backgroundColor ??
+        colorScheme.surfaceContainerHighest.withValues(alpha: 0.2);
 
     final Widget? centerWidget = center ??
         (showPercentage
             ? Text(
                 '${(value * 100).round()}%',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      color: colorScheme.onBackground,
+                      color: colorScheme.onSurface,
                       fontWeight: FontWeight.w700,
                     ),
                 textAlign: TextAlign.center,

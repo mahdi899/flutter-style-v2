@@ -109,12 +109,12 @@ class _FilterSettingsSheetState extends State<FilterSettingsSheet> {
                             gradient: selected ? AppGradients.primary : null,
                             color: selected
                                 ? null
-                                : colorScheme.surface.withOpacity(0.68),
+                                : colorScheme.surface.withValues(alpha: 0.68),
                             borderRadius: AppRadii.border24,
                             border: Border.all(
                               color: selected
-                                  ? Colors.white.withOpacity(0.4)
-                                  : colorScheme.outline.withOpacity(0.16),
+                                  ? Colors.white.withValues(alpha: 0.4)
+                                  : colorScheme.outline.withValues(alpha: 0.16),
                             ),
                             boxShadow: selected
                                 ? const <BoxShadow>[AppShadows.soft]
@@ -154,7 +154,7 @@ class _FilterSettingsSheetState extends State<FilterSettingsSheet> {
                     onPressed: _reset,
                     style: FilledButton.styleFrom(
                       minimumSize: const Size.fromHeight(54),
-                      backgroundColor: colorScheme.surfaceVariant,
+                      backgroundColor: colorScheme.surfaceContainerHigh,
                       foregroundColor: colorScheme.onSurface,
                       shape: const RoundedRectangleBorder(
                         borderRadius: AppRadii.border24,
@@ -218,7 +218,7 @@ class _FilterGroup extends StatelessWidget {
           return Pill(
             label: option,
             selected: isSelected,
-            onSelected: (_) => onToggle(segment, option),
+            onSelected: (item) => onToggle(segment, option),
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
           );
         }).toList(),
@@ -247,11 +247,11 @@ class _ColorSwatchChip extends StatelessWidget {
         Theme.of(context).textTheme.labelLarge ?? const TextStyle();
 
     final Color background = selected
-        ? Color.alphaBlend(color.withOpacity(0.2), colorScheme.surface)
-        : colorScheme.surface.withOpacity(0.72);
+        ? Color.alphaBlend(color.withValues(alpha: 0.2), colorScheme.surface)
+        : colorScheme.surface.withValues(alpha: 0.72);
     final Color borderColor = selected
-        ? color.withOpacity(0.45)
-        : colorScheme.outline.withOpacity(0.12);
+        ? color.withValues(alpha: 0.45)
+        : colorScheme.outline.withValues(alpha: 0.12);
 
     return Material(
       color: Colors.transparent,

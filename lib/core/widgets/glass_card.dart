@@ -40,14 +40,14 @@ class GlassCard extends StatelessWidget {
             gradient: gradient ??
                 LinearGradient(
                   colors: <Color>[
-                    colorScheme.surface.withOpacity(0.78),
-                    colorScheme.surface.withOpacity(0.62),
+                    colorScheme.surface.withValues(alpha: 0.78),
+                    colorScheme.surface.withValues(alpha: 0.62),
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
             border: Border.all(
-              color: borderColor ?? Colors.white.withOpacity(0.18),
+              color: borderColor ?? Colors.white.withValues(alpha: 0.18),
             ),
             borderRadius: borderRadius,
             boxShadow: boxShadow,

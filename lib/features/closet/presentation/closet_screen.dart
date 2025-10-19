@@ -74,7 +74,7 @@ class _ClosetScreenState extends State<ClosetScreen> {
       return _items;
     }
     return _items
-        .where((_) => _.category == _selectedCategory)
+        .where((item) => item.category == _selectedCategory)
         .toList(growable: false);
   }
 
@@ -190,7 +190,7 @@ class _ClosetScreenState extends State<ClosetScreen> {
                   child: Row(
                     children: <Widget>[
                       CircleAvatar(
-                        backgroundColor: AppColors.primary.withOpacity(0.12),
+                        backgroundColor: AppColors.primary.withValues(alpha: 0.12),
                         child: Text('S${index + 1}'),
                       ),
                       const SizedBox(width: 16),
@@ -419,7 +419,7 @@ class _ClosetScreenState extends State<ClosetScreen> {
                       child: ChoiceChip(
                         label: Text(category),
                         selected: selected,
-                        onSelected: (_) {
+                        onSelected: (item) {
                           setState(() {
                             _selectedCategory = category;
                           });
@@ -589,8 +589,8 @@ class _ClosetCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: <Color>[
-                      AppColors.primary.withOpacity(0.85),
-                      AppColors.secondary.withOpacity(0.85),
+                      AppColors.primary.withValues(alpha: 0.85),
+                      AppColors.secondary.withValues(alpha: 0.85),
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -667,7 +667,10 @@ class _ClosetActionButton extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.4),
+            color: Theme.of(context)
+                .colorScheme
+                .surfaceContainerHigh
+                .withValues(alpha: 0.4),
             borderRadius: AppRadii.border16,
           ),
           child: Text(
