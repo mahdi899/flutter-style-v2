@@ -115,7 +115,53 @@ final GoRouter appRouter = GoRouter(
       parentNavigatorKey: _rootNavigatorKey,
       path: AppRoutePath.filters,
       name: AppRouteName.filters,
-      builder: (context, state) => const FiltersScreen(),
+      pageBuilder: (context, state) {
+        Map<String, List<String>> initialFilters =
+            const <String, List<String>>{};
+        final Object? extra = state.extra;
+        if (extra is Map<String, dynamic>) {
+          final Object? maybeInitial = extra['initialFilters'];
+          if (maybeInitial is Map) {
+            final Map<String, List<String>> parsed =
+                <String, List<String>>{};
+            maybeInitial.forEach((Object? key, Object? value) {
+              if (key is String) {
+                if (value is List) {
+                  parsed[key] = value.whereType<String>().toList();
+                } else {
+                  parsed[key] = const <String>[];
+                }
+              }
+            });
+            initialFilters = parsed;
+          }
+        }
+
+        return CustomTransitionPage<Map<String, List<String>>>(
+          key: state.pageKey,
+          opaque: false,
+          barrierDismissible: true,
+          barrierColor: Colors.black45,
+          transitionDuration: const Duration(milliseconds: 280),
+          reverseTransitionDuration: const Duration(milliseconds: 220),
+          child: FiltersScreen(initialFilters: initialFilters),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            final Animation<double> curved = CurvedAnimation(
+              parent: animation,
+              curve: Curves.easeOutCubic,
+              reverseCurve: Curves.easeInCubic,
+            );
+            final Animation<Offset> slideAnimation = Tween<Offset>(
+              begin: const Offset(0, 1),
+              end: Offset.zero,
+            ).animate(curved);
+            return SlideTransition(
+              position: slideAnimation,
+              child: child,
+            );
+          },
+        );
+      },
     ),
   ],
 );
