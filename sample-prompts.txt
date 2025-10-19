@@ -1,0 +1,1 @@
+Use Codex prompts in Farsi/English to generate UI and services.
