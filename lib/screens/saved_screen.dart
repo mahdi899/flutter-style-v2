@@ -6,9 +6,10 @@ class SavedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return BottomNavShell(
       child: Center(
-        child: Text('Saved', style: const TextStyle(fontSize: 22)),
+        child: Text('Saved', style: textTheme.headline1),
       ),
     );
   }

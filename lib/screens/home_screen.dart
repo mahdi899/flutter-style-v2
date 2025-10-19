@@ -6,9 +6,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return BottomNavShell(
       child: Center(
-        child: Text('Home', style: const TextStyle(fontSize: 22)),
+        child: Text('Home', style: textTheme.headline1),
       ),
     );
   }

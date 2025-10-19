@@ -6,9 +6,10 @@ class InspirationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return BottomNavShell(
       child: Center(
-        child: Text('Inspiration', style: const TextStyle(fontSize: 22)),
+        child: Text('Inspiration', style: textTheme.headline1),
       ),
     );
   }

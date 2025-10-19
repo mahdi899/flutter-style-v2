@@ -6,9 +6,10 @@ class AccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return BottomNavShell(
       child: Center(
-        child: Text('Account', style: const TextStyle(fontSize: 22)),
+        child: Text('Account', style: textTheme.headline1),
       ),
     );
   }

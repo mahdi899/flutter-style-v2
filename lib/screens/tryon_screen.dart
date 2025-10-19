@@ -6,9 +6,10 @@ class TryOnScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return BottomNavShell(
       child: Center(
-        child: Text('Virtual Try-On', style: const TextStyle(fontSize: 22)),
+        child: Text('Virtual Try-On', style: textTheme.headline1),
       ),
     );
   }
