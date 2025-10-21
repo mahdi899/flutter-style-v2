@@ -239,7 +239,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: <Widget>[
                   CircleAvatar(
                     radius: 26,
-                    backgroundColor: colorScheme.primary.withOpacity(0.12),
+                    backgroundColor: colorScheme.primary.withValues(alpha: 0.12),
                     child: const Icon(Icons.person_rounded, size: 30),
                   ),
                   const SizedBox(width: 16),
@@ -256,7 +256,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Text(
                           'استایلیست اختصاصی شما آماده است',
                           style: theme.textTheme.bodyMedium?.copyWith(
-                                color: colorScheme.onSurface.withOpacity(0.7),
+                                color: colorScheme.onSurface.withValues(alpha: 0.7),
                               ),
                         ),
                       ],
@@ -348,7 +348,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Text(
                       'من برای جلسه رسمی فردایت چه ترکیبی پیشنهاد کنم؟',
                       style: theme.textTheme.bodyLarge?.copyWith(
-                        color: Colors.white.withOpacity(0.88),
+                        color: Colors.white.withValues(alpha: 0.88),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -441,7 +441,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             size: 140,
                             strokeWidth: 12,
                             color: AppColors.primary,
-                            backgroundColor: colorScheme.primary.withOpacity(0.08),
+                            backgroundColor: colorScheme.primary.withValues(alpha: 0.08),
                           ),
                           const SizedBox(height: 16),
                           Text(
@@ -494,7 +494,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemCount: _trends.length,
-                  separatorBuilder: (_, __) => const SizedBox(width: 16),
+                  separatorBuilder: (item, e) => const SizedBox(width: 16),
                   itemBuilder: (BuildContext context, int index) {
                     final _Trend trend = _trends[index];
                     return _TrendCard(
@@ -516,7 +516,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemCount: _faces.length,
-                  separatorBuilder: (_, __) => const SizedBox(width: 16),
+                  separatorBuilder: (item, e) => const SizedBox(width: 16),
                   itemBuilder: (BuildContext context, int index) {
                     final _FaceInspiration face = _faces[index];
                     return _FaceCard(
@@ -572,7 +572,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         const Spacer(),
                         DecoratedBox(
                           decoration: BoxDecoration(
-                            color: colorScheme.primary.withOpacity(0.12),
+                            color: colorScheme.primary.withValues(alpha: 0.12),
                             borderRadius: AppRadii.border16,
                           ),
                           child: Padding(
@@ -681,8 +681,8 @@ class _MissionCard extends StatelessWidget {
 
     final bool isInactive = status != _MissionStatus.pending;
     final Color borderColor = status == _MissionStatus.skipped
-        ? Colors.red.withOpacity(0.35)
-        : colorScheme.primary.withOpacity(0.25);
+        ? Colors.red.withValues(alpha: 0.35)
+        : colorScheme.primary.withValues(alpha: 0.25);
 
     return AnimatedOpacity(
       duration: const Duration(milliseconds: 250),
@@ -712,7 +712,7 @@ class _MissionCard extends StatelessWidget {
             Text(
               mission.description,
               style: theme.textTheme.bodyMedium?.copyWith(
-                color: colorScheme.onSurface.withOpacity(0.7),
+                color: colorScheme.onSurface.withValues(alpha: 0.7),
               ),
             ),
             const SizedBox(height: 16),
@@ -785,7 +785,7 @@ class _QuickTip extends StatelessWidget {
           height: 48,
           width: 48,
           decoration: BoxDecoration(
-            color: colorScheme.primary.withOpacity(0.12),
+            color: colorScheme.primary.withValues(alpha: 0.12),
             borderRadius: AppRadii.border16,
           ),
           child: Icon(icon, color: colorScheme.primary),
@@ -803,7 +803,7 @@ class _QuickTip extends StatelessWidget {
               Text(
                 subtitle,
                 style: theme.textTheme.bodyMedium?.copyWith(
-                      color: colorScheme.onSurface.withOpacity(0.7),
+                      color: colorScheme.onSurface.withValues(alpha: 0.7),
                     ),
               ),
             ],
@@ -870,7 +870,7 @@ class _GraphPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final Paint axisPaint = Paint()
-      ..color = color.withOpacity(0.18)
+      ..color = color.withValues(alpha: 0.18)
       ..strokeWidth = 1.2;
     final Paint linePaint = Paint()
       ..color = color
@@ -918,7 +918,7 @@ class _FeedbackChip extends StatelessWidget {
       label: Text(label),
       avatar: Icon(icon, size: 18),
       selected: false,
-      onSelected: (_) {},
+      onSelected: (item) {},
       showCheckmark: false,
     );
   }
@@ -1106,7 +1106,7 @@ class _FaceCard extends StatelessWidget {
               children: <Widget>[
                 CircleAvatar(
                   radius: 26,
-                  backgroundColor: face.color.withOpacity(0.18),
+                  backgroundColor: face.color.withValues(alpha: 0.18),
                   child: Icon(Icons.wb_incandescent_outlined, color: face.color),
                 ),
                 const SizedBox(width: 12),

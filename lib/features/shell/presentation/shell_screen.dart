@@ -91,7 +91,7 @@ class ShellScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(32),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.06),
+                  color: Colors.black.withValues(alpha: 0.06),
                   blurRadius: 24,
                   offset: const Offset(0, 12),
                 ),
@@ -158,7 +158,7 @@ class _NavigationItem extends StatelessWidget {
                 gradient: isActive ? gradient : null,
                 color: isActive
                     ? null
-                    : colorScheme.surfaceVariant.withOpacity(0.9),
+                    : colorScheme.surfaceContainerHigh.withValues(alpha: 0.9),
               ),
               child: Icon(
                 destination.icon,

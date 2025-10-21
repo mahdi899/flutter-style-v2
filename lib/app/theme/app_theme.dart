@@ -60,8 +60,8 @@ class AppTheme {
     );
 
     final TextTheme textTheme = _textTheme(brightness).apply(
-      displayColor: colorScheme.onBackground,
-      bodyColor: colorScheme.onBackground,
+      displayColor: colorScheme.onSurface,
+      bodyColor: colorScheme.onSurface,
     );
 
     return ThemeData(
@@ -69,8 +69,8 @@ class AppTheme {
       brightness: brightness,
       fontFamily: 'Vazirmatn',
       colorScheme: colorScheme,
-      scaffoldBackgroundColor: colorScheme.background,
-      canvasColor: colorScheme.background,
+      scaffoldBackgroundColor: colorScheme.surface,
+      canvasColor: colorScheme.surface,
       textTheme: textTheme,
       appBarTheme: AppBarTheme(
         backgroundColor: colorScheme.surface,
@@ -96,21 +96,21 @@ class AppTheme {
       ),
       chipTheme: ChipThemeData(
         backgroundColor: colorScheme.surface,
-        selectedColor: AppColors.accent.withOpacity(0.12),
+        selectedColor: AppColors.accent.withValues(alpha: 0.12),
         shape: const RoundedRectangleBorder(borderRadius: AppRadii.border16),
         labelStyle: textTheme.labelMedium ?? const TextStyle(fontWeight: FontWeight.w600),
-        side: BorderSide(color: colorScheme.outline.withOpacity(0.2)),
+        side: BorderSide(color: colorScheme.outline.withValues(alpha: 0.2)),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: colorScheme.surface,
         border: OutlineInputBorder(
           borderRadius: AppRadii.border24,
-          borderSide: BorderSide(color: colorScheme.outline.withOpacity(0.2)),
+          borderSide: BorderSide(color: colorScheme.outline.withValues(alpha: 0.2)),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: AppRadii.border24,
-          borderSide: BorderSide(color: colorScheme.outline.withOpacity(0.2)),
+          borderSide: BorderSide(color: colorScheme.outline.withValues(alpha: 0.2)),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: AppRadii.border24,
@@ -126,18 +126,18 @@ class AppTheme {
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: colorScheme.surface,
         selectedItemColor: AppColors.primary,
-        unselectedItemColor: colorScheme.onSurface.withOpacity(0.6),
+        unselectedItemColor: colorScheme.onSurface.withValues(alpha: 0.6),
         type: BottomNavigationBarType.fixed,
         showUnselectedLabels: true,
         selectedLabelStyle: textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w600),
         unselectedLabelStyle: textTheme.labelMedium,
       ),
       dividerTheme: DividerThemeData(
-        color: colorScheme.outline.withOpacity(0.2),
+        color: colorScheme.outline.withValues(alpha: 0.2),
         space: 0,
         thickness: 1,
       ),
-      shadowColor: Colors.black.withOpacity(0.12),
+      shadowColor: Colors.black.withValues(alpha: 0.12),
     );
   }
 

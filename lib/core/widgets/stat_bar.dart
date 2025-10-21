@@ -25,7 +25,7 @@ class StatBar extends StatelessWidget {
 
     final Color resolvedColor = color ?? AppColors.primary;
     final Color resolvedBackground = backgroundColor ??
-        colorScheme.surfaceVariant.withOpacity(0.3);
+        colorScheme.surfaceContainerHighest.withValues(alpha: 0.3);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,7 +36,7 @@ class StatBar extends StatelessWidget {
               child: Text(
                 label,
                 style: textTheme.labelLarge?.copyWith(
-                  color: colorScheme.onBackground,
+                  color: colorScheme.onSurface,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -45,7 +45,7 @@ class StatBar extends StatelessWidget {
               Text(
                 valueLabel!,
                 style: textTheme.labelLarge?.copyWith(
-                  color: colorScheme.onBackground.withOpacity(0.7),
+                  color: colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
               ),
           ],
@@ -71,7 +71,7 @@ class StatBar extends StatelessWidget {
                         gradient: LinearGradient(
                           colors: <Color>[
                             resolvedColor,
-                            resolvedColor.withOpacity(0.7),
+                            resolvedColor.withValues(alpha: 0.7),
                           ],
                           begin: AlignmentDirectional.centerStart,
                           end: AlignmentDirectional.centerEnd,

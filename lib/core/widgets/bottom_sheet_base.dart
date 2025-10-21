@@ -28,7 +28,7 @@ class BottomSheetBase extends StatelessWidget {
           filter: ImageFilter.blur(sigmaX: 24, sigmaY: 24),
           child: DecoratedBox(
             decoration: BoxDecoration(
-              color: colorScheme.surface.withOpacity(0.92),
+              color: colorScheme.surface.withValues(alpha: 0.92),
               boxShadow: const <BoxShadow>[AppShadows.soft],
             ),
             child: Padding(
@@ -42,7 +42,7 @@ class BottomSheetBase extends StatelessWidget {
                       height: 5,
                       margin: const EdgeInsets.only(bottom: 20),
                       decoration: BoxDecoration(
-                        color: colorScheme.onSurface.withOpacity(0.12),
+                        color: colorScheme.onSurface.withValues(alpha: 0.12),
                         borderRadius: AppRadii.border16,
                       ),
                     ),

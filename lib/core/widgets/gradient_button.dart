@@ -38,8 +38,14 @@ class GradientButton extends StatelessWidget {
               ? gradient
               : LinearGradient(
                   colors: <Color>[
-                    Theme.of(context).colorScheme.surface.withOpacity(0.5),
-                    Theme.of(context).colorScheme.surface.withOpacity(0.5),
+                    Theme.of(context)
+                        .colorScheme
+                        .surface
+                        .withValues(alpha: 0.5),
+                    Theme.of(context)
+                        .colorScheme
+                        .surface
+                        .withValues(alpha: 0.5),
                   ],
                 ),
           borderRadius: borderRadius,

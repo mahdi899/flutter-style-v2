@@ -176,16 +176,16 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   aspectRatio: 4 / 5,
                   child: DecoratedBox(
                     decoration: BoxDecoration(
-                      color: colorScheme.surfaceVariant,
+                      color: colorScheme.surfaceContainerHighest,
                     ),
                     child: Image.network(
                       item.imageUrl,
                       fit: BoxFit.cover,
-                      errorBuilder: (BuildContext _, Object __, StackTrace? ___) {
+                      errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
                         return Center(
                           child: Icon(
                             Icons.image_not_supported_outlined,
-                            color: colorScheme.onSurface.withOpacity(0.4),
+                            color: colorScheme.onSurface.withValues(alpha: 0.4),
                             size: 48,
                           ),
                         );
@@ -198,7 +198,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
               Text(
                 item.subtitle,
                 style: textTheme.bodyMedium?.copyWith(
-                  color: colorScheme.onSurface.withOpacity(0.72),
+                  color: colorScheme.onSurface.withValues(alpha: 0.72),
                 ),
               ),
               const SizedBox(height: 24),
@@ -299,7 +299,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       Icon(
                         Icons.filter_alt_off_outlined,
                         size: 48,
-                        color: colorScheme.onSurface.withOpacity(0.4),
+                        color: colorScheme.onSurface.withValues(alpha: 0.4),
                       ),
                       const SizedBox(height: 12),
                       Text(
@@ -310,7 +310,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       Text(
                         'فیلترها را تغییر دهید تا پیشنهادهای بیشتری ببینید.',
                         style: theme.textTheme.bodyMedium?.copyWith(
-                          color: colorScheme.onSurface.withOpacity(0.6),
+                          color: colorScheme.onSurface.withValues(alpha: 0.6),
                         ),
                         textAlign: TextAlign.center,
                       ),
@@ -355,12 +355,12 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   onPressed: _hasPendingChanges ? _applyPendingFilters : null,
                   style: FilledButton.styleFrom(
                     minimumSize: const Size.fromHeight(60),
-                    backgroundColor: colorScheme.surfaceVariant,
+                    backgroundColor: colorScheme.surfaceContainerHigh,
                     foregroundColor: colorScheme.onSurface,
                     disabledBackgroundColor:
-                        colorScheme.surfaceVariant.withOpacity(0.6),
+                        colorScheme.surfaceContainerHigh.withValues(alpha: 0.6),
                     disabledForegroundColor:
-                        colorScheme.onSurface.withOpacity(0.4),
+                        colorScheme.onSurface.withValues(alpha: 0.4),
                     shape: const RoundedRectangleBorder(
                       borderRadius: AppRadii.border24,
                     ),
@@ -454,12 +454,12 @@ class _SegmentedControl extends StatelessWidget {
                   decoration: BoxDecoration(
                     gradient: selected ? AppGradients.primary : null,
                     color:
-                        selected ? null : colorScheme.surface.withOpacity(0.68),
+                        selected ? null : colorScheme.surface.withValues(alpha: 0.68),
                     borderRadius: AppRadii.border24,
                     border: Border.all(
                       color: selected
-                          ? Colors.white.withOpacity(0.4)
-                          : colorScheme.outline.withOpacity(0.16),
+                          ? Colors.white.withValues(alpha: 0.4)
+                          : colorScheme.outline.withValues(alpha: 0.16),
                     ),
                     boxShadow:
                         selected ? const <BoxShadow>[AppShadows.soft] : null,
@@ -522,7 +522,7 @@ class _FilterOptionsRow extends StatelessWidget {
             child = Pill(
               label: option,
               selected: isSelected,
-              onSelected: (_) => onToggle(segment, option),
+              onSelected: (item) => onToggle(segment, option),
             );
           }
 
@@ -556,11 +556,11 @@ class _ColorFilterChip extends StatelessWidget {
         Theme.of(context).textTheme.labelLarge ?? const TextStyle();
 
     final Color background = selected
-        ? Color.alphaBlend(color.withOpacity(0.2), colorScheme.surface)
-        : colorScheme.surface.withOpacity(0.72);
+        ? Color.alphaBlend(color.withValues(alpha: 0.2), colorScheme.surface)
+        : colorScheme.surface.withValues(alpha: 0.72);
     final Color borderColor = selected
-        ? color.withOpacity(0.45)
-        : colorScheme.outline.withOpacity(0.12);
+        ? color.withValues(alpha: 0.45)
+        : colorScheme.outline.withValues(alpha: 0.12);
 
     return Material(
       color: Colors.transparent,
@@ -632,16 +632,16 @@ class _ExploreCard extends StatelessWidget {
                     aspectRatio: 4 / 5,
                     child: DecoratedBox(
                       decoration: BoxDecoration(
-                        color: colorScheme.surfaceVariant,
+                        color: colorScheme.surfaceContainerHighest,
                       ),
                       child: Image.network(
                         item.imageUrl,
                         fit: BoxFit.cover,
-                        errorBuilder: (BuildContext _, Object __, StackTrace? ___) {
+                        errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
                           return Center(
                             child: Icon(
                               Icons.image_outlined,
-                              color: colorScheme.onSurface.withOpacity(0.3),
+                              color: colorScheme.onSurface.withValues(alpha: 0.3),
                               size: 40,
                             ),
                           );
@@ -693,7 +693,7 @@ class _ExploreCard extends StatelessWidget {
           Text(
             item.subtitle,
             style: textTheme.bodyMedium?.copyWith(
-              color: colorScheme.onSurface.withOpacity(0.65),
+              color: colorScheme.onSurface.withValues(alpha: 0.65),
               height: 1.4,
             ),
           ),
@@ -719,13 +719,13 @@ class _ActionIconButton extends StatelessWidget {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     final Color background = active
         ? Color.alphaBlend(
-            colorScheme.primary.withOpacity(0.22),
+            colorScheme.primary.withValues(alpha: 0.22),
             colorScheme.surface,
           )
-        : colorScheme.surface.withOpacity(0.82);
+        : colorScheme.surface.withValues(alpha: 0.82);
     final Color foreground = active
         ? colorScheme.primary
-        : colorScheme.onSurface.withOpacity(0.8);
+        : colorScheme.onSurface.withValues(alpha: 0.8);
 
     return Material(
       color: Colors.transparent,
@@ -740,8 +740,8 @@ class _ActionIconButton extends StatelessWidget {
             shape: BoxShape.circle,
             border: Border.all(
               color: active
-                  ? colorScheme.primary.withOpacity(0.4)
-                  : colorScheme.outline.withOpacity(0.12),
+                  ? colorScheme.primary.withValues(alpha: 0.4)
+                  : colorScheme.outline.withValues(alpha: 0.12),
             ),
             boxShadow: const <BoxShadow>[AppShadows.soft],
           ),

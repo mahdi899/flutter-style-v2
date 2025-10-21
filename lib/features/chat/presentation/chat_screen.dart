@@ -68,7 +68,7 @@ class _ChatScreenState extends State<ChatScreen> {
     });
     _controller.clear();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((item) {
       if (!_scrollController.hasClients) {
         return;
       }
@@ -208,7 +208,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                   const SizedBox(height: 12),
                   ..._messages
-                      .map((_) => _ChatBubble(
+                      .map((item) => _ChatBubble(
                             message: _,
                           ))
                       .toList(),
@@ -324,7 +324,7 @@ class _ChatBubble extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: BoxDecoration(
           color: isUser
-              ? AppColors.primary.withOpacity(0.12)
+              ? AppColors.primary.withValues(alpha: 0.12)
               : theme.colorScheme.surface,
           borderRadius: BorderRadius.only(
             topLeft: const Radius.circular(24),

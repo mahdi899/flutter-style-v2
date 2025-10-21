@@ -31,7 +31,7 @@ class TryOnScreen extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.smartphone_rounded,
-                      color: Colors.white.withOpacity(0.85),
+                      color: Colors.white.withValues(alpha: 0.85),
                       size: 64,
                     ),
                     const SizedBox(height: 16),
@@ -43,7 +43,7 @@ class TryOnScreen extends StatelessWidget {
                     Text(
                       'تصویر خود را بارگذاری کنید یا از دوربین استفاده کنید.',
                       style: theme.textTheme.bodyMedium?.copyWith(
-                        color: Colors.white.withOpacity(0.9),
+                        color: Colors.white.withValues(alpha: 0.9),
                       ),
                       textAlign: TextAlign.center,
                     ),

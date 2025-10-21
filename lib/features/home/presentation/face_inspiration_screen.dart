@@ -17,7 +17,7 @@ class FaceInspirationScreen extends StatelessWidget {
       body: ListView.separated(
         padding: const EdgeInsets.all(24),
         itemCount: _faceInspirationItems.length,
-        separatorBuilder: (_, __) => const SizedBox(height: 16),
+        separatorBuilder: (item, e) => const SizedBox(height: 16),
         itemBuilder: (BuildContext context, int index) {
           final _FaceInspirationItem item = _faceInspirationItems[index];
           return GlassCard(
@@ -27,7 +27,7 @@ class FaceInspirationScreen extends StatelessWidget {
               children: <Widget>[
                 CircleAvatar(
                   radius: 28,
-                  backgroundColor: item.color.withOpacity(0.15),
+                  backgroundColor: item.color.withValues(alpha: 0.15),
                   child: Icon(item.icon, color: item.color),
                 ),
                 const SizedBox(width: 16),
@@ -43,7 +43,7 @@ class FaceInspirationScreen extends StatelessWidget {
                       Text(
                         item.role,
                         style: theme.textTheme.bodyMedium?.copyWith(
-                              color: theme.colorScheme.onSurface.withOpacity(0.7),
+                              color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                             ),
                       ),
                     ],
