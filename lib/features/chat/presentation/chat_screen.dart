@@ -207,11 +207,11 @@ class _ChatScreenState extends State<ChatScreen> {
                     style: theme.textTheme.titleMedium,
                   ),
                   const SizedBox(height: 12),
-                  ..._messages
-                      .map((item) => _ChatBubble(
-                            message: _,
-                          ))
-                      .toList(),
+                  ..._messages.map(
+                    (m) => _ChatBubble(
+                      message: m,
+                    ),
+                  ),
                   const SizedBox(height: 28),
                   Text(
                     'می‌تونی سریع انتخاب کنی',
